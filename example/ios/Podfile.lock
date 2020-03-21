@@ -1,0 +1,50 @@
+PODS:
+  - FBSDKCoreKit (5.13.1):
+    - FBSDKCoreKit/Basics (= 5.13.1)
+    - FBSDKCoreKit/Core (= 5.13.1)
+  - FBSDKCoreKit/Basics (5.13.1)
+  - FBSDKCoreKit/Core (5.13.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKShareKit (5.13.1):
+    - FBSDKShareKit/Share (= 5.13.1)
+  - FBSDKShareKit/Share (5.13.1):
+    - FBSDKCoreKit (~> 5.0)
+  - Flutter (1.0.0)
+  - flutter_share_plugin (0.0.1):
+    - FBSDKCoreKit (~> 5.5)
+    - FBSDKShareKit (~> 5.5)
+    - Flutter
+    - TwitterKit (~> 3.4)
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
+
+DEPENDENCIES:
+  - FBSDKShareKit (~> 5.13)
+  - Flutter (from `Flutter`)
+  - flutter_share_plugin (from `.symlinks/plugins/flutter_share_plugin/ios`)
+
+SPEC REPOS:
+  trunk:
+    - FBSDKCoreKit
+    - FBSDKShareKit
+    - TwitterCore
+    - TwitterKit
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_share_plugin:
+    :path: ".symlinks/plugins/flutter_share_plugin/ios"
+
+SPEC CHECKSUMS:
+  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
+  FBSDKShareKit: 8a0e4d7172c7b706991c834cff2bf74e7b4726e3
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_share_plugin: 72a4f49bc0aa6e9af43f00699d9bf1b2e24cc876
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
+
+PODFILE CHECKSUM: 613f7330098132387ffac51fb41036d315b15cef
+
+COCOAPODS: 1.8.4
