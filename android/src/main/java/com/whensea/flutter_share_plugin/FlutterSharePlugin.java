@@ -89,24 +89,6 @@ public class FlutterSharePlugin implements MethodCallHandler {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(lineUrl));
             mActivity.startActivity(intent);
         }
-
-//        try {
-//            Intent intent = new Intent(Intent.ACTION_SEND);
-//            intent.setClassName("jp.naver.line.android", "jp.naver.line.android.activity.selectchat.SelectChatActivityLaunchActivity");
-//            intent.setType("text/plain");
-//            intent.putExtra(Intent.EXTRA_TEXT,  msg + " " + url);
-//            mActivity.startActivity(intent);
-////            ComponentName cn = new ComponentName("jp.naver.line.android", "jp.naver.line.android.activity.selectchat.SelectChatActivity");
-////            Intent shareIntent = new Intent();
-////            shareIntent.setAction(Intent.ACTION_SEND);
-////            shareIntent.setType("text/plain"); // 纯文本
-////            shareIntent.putExtra(Intent.EXTRA_TEXT, msg + " " + url);
-////            shareIntent.setComponent(cn);//跳到指定APP的Activity
-////            mActivity.startActivity(Intent.createChooser(shareIntent, ""));
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-////            Logger.(TAG, "lineShare:" + ex);
-//        }
     }
 
     /**
@@ -163,7 +145,6 @@ public class FlutterSharePlugin implements MethodCallHandler {
 
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentUrl(Uri.parse(url))
-//                .setQuote(msg)
                 .build();
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             shareDialog.show(content);
