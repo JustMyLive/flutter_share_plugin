@@ -18,7 +18,7 @@ A Flutter plugin for sharing.
   s.dependency 'Flutter'
   s.dependency 'FBSDKCoreKit', '~> 5.5'
   s.dependency 'FBSDKShareKit', '~> 5.5'
-  s.dependency 'TwitterKit', '~> 3.4'
+  s.dependency 'TwitterKit5'
 
   s.platform = :ios, '9.0'
 
