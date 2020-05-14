@@ -14,10 +14,11 @@
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
   if ([@"shareFacebook" isEqualToString:call.method]) {
     NSString *url = call.arguments[@"url"];
-      [self shareToFacebookWithResult:result andUrl:url];
+      [self shareToFacebookWithResult:result andUrl:url andQuote: call.arguments[@"msg"]];
   } else if ([@"shareTwitter" isEqualToString:call.method]) {
-       NSString *url = call.arguments[@"url"];
-       [self shareToTwitterWithResult:result andUrl:url];
+    [self shareToTwitterWithResult:call.arguments[@"msg"] andUrl:call.arguments[@"url"]];
+      //  NSString *url = call.arguments[@"url"];
+      //  [self shareToTwitterWithResult:result andUrl:url];
   } else if ([@"shareLine" isEqualToString:call.method]) {
     NSString *url = call.arguments[@"url"];
     [self shareToLineWithResult:result andUrl:url];
@@ -26,9 +27,10 @@
   }
 }
 
-- (void)shareToFacebookWithResult:(FlutterResult)flutterResult andUrl:(NSString *)url {
+- (void)shareToFacebookWithResult:(FlutterResult)flutterResult andUrl:(NSString *)url andQuote:(NSString*)quote {
     FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
     content.contentURL = [NSURL URLWithString:url];
+    content.quote = quote;
     [FBSDKShareDialog showFromViewController:[UIApplication sharedApplication].keyWindow.rootViewController
                                   withContent:content
                                      delegate:nil];
@@ -37,15 +39,13 @@
     flutterResult(@"success");
 }
 
-- (void)shareToTwitterWithResult:(FlutterResult)flutterResult andUrl:(NSString *)url {
-    NSString * encodedString = [NSString stringWithFormat:@"twitter://post?message=%@\n%@",
-                                @"",
-                                url];
+- (void)shareToTwitterWithResult:(NSString*)text
+                          andUrl:(NSString*)url {
+    NSString* encodedString = [NSString stringWithFormat:@"https://twitter.com/intent/tweet?text=%@&url=%@", text, url];
     encodedString = [encodedString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     
     NSURL *twitterUrl = [NSURL URLWithString:encodedString];
-//
     
     if ([[UIApplication sharedApplication] canOpenURL:twitterUrl]) {
            [[UIApplication sharedApplication] openURL:twitterUrl];
