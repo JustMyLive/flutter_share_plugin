@@ -31,6 +31,8 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 public class FlutterSharePlugin implements MethodCallHandler {
     private static CallbackManager mCallbackManager;
     private final Activity mActivity;
+    private final static int TWITTER_REQUEST_CODE = 0xc0ce;
+    private final static String TWITTER_PACKAGE_NAME = "com.twitter.android";
 
     public FlutterSharePlugin(Registrar registrar) {
         mActivity = registrar.activity();
@@ -99,18 +101,21 @@ public class FlutterSharePlugin implements MethodCallHandler {
      * @param result Result
      */
     private void shareToTwitter(String url, String msg, Result result) {
-        try {
-            TweetComposer.Builder builder = new TweetComposer.Builder(mActivity);
-            if (url != null && url.length() > 0) {
-                final String tweetUrl = String.format("%s%s", msg, url);
-                builder.url(new URL(tweetUrl));
-            }
+        final String tweetUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", msg, url);
+        final Uri uri = Uri.parse(tweetUrl);
+        activity.startActivityForResult(new Intent(Intent.ACTION_VIEW, uri), TWITTER_REQUEST_CODE);
+        // try {
+        //     TweetComposer.Builder builder = new TweetComposer.Builder(mActivity);
+        //     if (url != null && url.length() > 0) {
+        //         final String tweetUrl = String.format("%s%s", msg, url);
+        //         builder.url(new URL(tweetUrl));
+        //     }
 
-            builder.show();
-            result.success("success");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        //     builder.show();
+        //     result.success("success");
+        // } catch (MalformedURLException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     /**
