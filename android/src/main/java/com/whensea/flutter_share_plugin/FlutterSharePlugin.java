@@ -103,8 +103,7 @@ public class FlutterSharePlugin implements MethodCallHandler {
             TweetComposer.Builder builder = new TweetComposer.Builder(mActivity);
             if (url != null && url.length() > 0) {
                 final String tweetUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", msg, url);
-                final Uri uri = Uri.parse(tweetUrl);
-                builder.url(uri);
+                builder.url(new URL(tweetUrl));
             }
 
             builder.show();
