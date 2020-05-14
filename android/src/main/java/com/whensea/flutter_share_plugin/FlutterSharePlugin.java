@@ -102,7 +102,9 @@ public class FlutterSharePlugin implements MethodCallHandler {
         try {
             TweetComposer.Builder builder = new TweetComposer.Builder(mActivity);
             if (url != null && url.length() > 0) {
-                builder.url(new URL(url));
+                final String tweetUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", msg, url);
+                final Uri uri = Uri.parse(tweetUrl);
+                builder.url(uri);
             }
 
             builder.show();
@@ -142,9 +144,10 @@ public class FlutterSharePlugin implements MethodCallHandler {
                 System.out.println("---------------onError");
             }
         });
-
+        
         ShareLinkContent content = new ShareLinkContent.Builder()
                 .setContentUrl(Uri.parse(url))
+                .setQuote(msg)
                 .build();
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             shareDialog.show(content);
