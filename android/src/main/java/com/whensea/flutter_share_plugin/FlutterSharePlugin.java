@@ -103,7 +103,7 @@ public class FlutterSharePlugin implements MethodCallHandler {
     private void shareToTwitter(String url, String msg, Result result) {
         final String tweetUrl = String.format("https://twitter.com/intent/tweet?text=%s&url=%s", msg, url);
         final Uri uri = Uri.parse(tweetUrl);
-        activity.startActivityForResult(new Intent(Intent.ACTION_VIEW, uri), TWITTER_REQUEST_CODE);
+        mActivity.startActivityForResult(new Intent(Intent.ACTION_VIEW, uri), TWITTER_REQUEST_CODE);
         // try {
         //     TweetComposer.Builder builder = new TweetComposer.Builder(mActivity);
         //     if (url != null && url.length() > 0) {
